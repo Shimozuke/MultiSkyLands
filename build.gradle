@@ -3,7 +3,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
-group = 'pl.Shimozuke.MultiSkyBlocks'
+group = 'pl.Shimozuke.MultiSkyLands'
 version = '1.0-SNAPSHOT'
 
 sourceCompatibility = '1.8'
@@ -17,4 +17,4 @@ shadowJar {
     classifier = null
 }
 
-sponge.plugin.id = 'multiskyblocks'
+sponge.plugin.id = 'multiskylands'

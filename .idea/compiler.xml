@@ -29,7 +29,7 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.18/e4a441249ade301985cb8d009d4e4a72b85bf68e/snakeyaml-1.18.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/2.4.0/e59a242c30953d9442e957639dbcc9e3784803e4/checker-qual-2.4.0.jar" />
         </processorPath>
-        <module name="MultiSkyBlocks.main" />
+        <module name="MultiSkyLands.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8" />
