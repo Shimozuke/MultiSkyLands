@@ -19,8 +19,9 @@ public class HelpCommand implements CommandExecutor
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException
     {
-        Map<List<String>, CommandSpec> commands = MultiskyLands.SUBCOMMANDS;
+        Map<List<String>, CommandSpec> commands = MultiskyLands.SUBCOMMAND;
         List<Text> helpList = Lists.newArrayList();
 
+        return CommandResult.success();
     }
 }
