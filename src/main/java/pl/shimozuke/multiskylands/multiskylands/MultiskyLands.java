@@ -11,9 +11,10 @@ import org.spongepowered.api.plugin.Plugin;
 
 import org.spongepowered.api.text.Text;
 import pl.shimozuke.multiskylands.multiskylands.commands.HelpCommand;
+import pl.shimozuke.multiskylands.multiskylands.commands.ReturnCommand;
+import pl.shimozuke.multiskylands.multiskylands.commands.SpawnCommand;
 import pl.shimozuke.multiskylands.multiskylands.viod.VoidCreator;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -46,7 +47,14 @@ public class MultiskyLands
         SUBCOMMAND.put(Arrays.asList("spawn"), CommandSpec.builder()
             .description(Text.of("Teleport to MultiSkyLands spawn."))
             .permission(PluginPermission.SPAWN_COMMAND)
+            .executor(new SpawnCommand())
             .build());
+
+        SUBCOMMAND.put(Arrays.asList("return"), CommandSpec.builder()
+        .description(Text.of("Let you return to default world."))
+        .permission(PluginPermission.RETURN_COMMAND)
+        .executor(new ReturnCommand())
+        .build());
 
         CommandSpec mainCommand = CommandSpec.builder()
                 .description(Text.of("Displays all avalible commands."))

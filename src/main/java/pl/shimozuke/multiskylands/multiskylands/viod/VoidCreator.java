@@ -1,8 +1,6 @@
 package pl.shimozuke.multiskylands.multiskylands.viod;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.world.WorldArchetypes;
 
 import java.io.IOException;
