@@ -3,6 +3,7 @@ package pl.shimozuke.multiskylands.multiskylands;
 import com.google.inject.Inject;
 import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
@@ -13,6 +14,7 @@ import org.spongepowered.api.text.Text;
 import pl.shimozuke.multiskylands.multiskylands.commands.HelpCommand;
 import pl.shimozuke.multiskylands.multiskylands.commands.ReturnCommand;
 import pl.shimozuke.multiskylands.multiskylands.commands.SpawnCommand;
+import pl.shimozuke.multiskylands.multiskylands.viod.SpawnCreator;
 import pl.shimozuke.multiskylands.multiskylands.viod.VoidCreator;
 
 import java.util.Arrays;
@@ -39,7 +41,10 @@ public class MultiskyLands
     {
 
         if (!Sponge.getServer().getWorld("MultiSkyLands").isPresent())
+        {
             VoidCreator.createVoid();
+            SpawnCreator.createSpawn();
+        }
     }
 
     private void initCommands()
