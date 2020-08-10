@@ -10,18 +10,19 @@ import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import pl.shimozuke.multiskylands.multiskylands.MultiskyLands;
+
+import java.util.Optional;
 
 public class SpawnCommand implements CommandExecutor
 {
     private MultiskyLands plugin;
-    private World world;
 
     public SpawnCommand(MultiskyLands plugin)
     {
         this.plugin = plugin;
-        this.world = plugin.world();
     }
 
     @Override
@@ -29,11 +30,13 @@ public class SpawnCommand implements CommandExecutor
     {
         if (src instanceof Player)
         {
-            Player player = (Player) src;
-            Vector3d destination = new Vector3d(0, 100, 0);
-            if (Sponge.getServer().getWorld("MultiSkyLands").isPresent())
+            final Player player = (Player) src;
+            final Vector3d destination = new Vector3d(0, 100, 0);
+            final Optional<World> optionalWorld = this.plugin.getMultiSkylandsWorld();
+            if (optionalWorld.isPresent())
             {
-                player.setLocation(destination, world.getUniqueId());
+                World world = optionalWorld.get();
+                player.setLocation(new Location<>(world, destination));
                 player.sendMessage(Text.of(TextColors.GREEN, "You were teleported to Sky Lands"));
             }
             else

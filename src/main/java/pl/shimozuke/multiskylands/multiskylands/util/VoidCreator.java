@@ -1,4 +1,4 @@
-package pl.shimozuke.multiskylands.multiskylands.viod;
+package pl.shimozuke.multiskylands.multiskylands.util;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.world.WorldArchetypes;

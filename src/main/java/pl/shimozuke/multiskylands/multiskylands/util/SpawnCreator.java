@@ -1,4 +1,4 @@
-package pl.shimozuke.multiskylands.multiskylands.viod;
+package pl.shimozuke.multiskylands.multiskylands.util;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
@@ -6,7 +6,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.world.World;
 import pl.shimozuke.multiskylands.multiskylands.MultiskyLands;
-import pl.shimozuke.multiskylands.multiskylands.helpfullTools.Storage;
+import pl.shimozuke.multiskylands.multiskylands.storage.Storage;
 
 import java.util.Optional;
 
@@ -21,7 +21,7 @@ public class SpawnCreator
     public SpawnCreator(MultiskyLands plugin)
     {
         this.plugin = plugin;
-        this.storage = plugin.storage();
+        this.storage = plugin.getStorage();
     }
 
     public void createSpawn()

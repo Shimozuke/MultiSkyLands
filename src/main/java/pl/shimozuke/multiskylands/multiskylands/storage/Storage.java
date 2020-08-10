@@ -1,4 +1,4 @@
-package pl.shimozuke.multiskylands.multiskylands.helpfullTools;
+package pl.shimozuke.multiskylands.multiskylands.storage;
 
 import com.flowpowered.math.vector.Vector3i;
 import ninja.leaping.configurate.ConfigurationNode;
@@ -22,15 +22,16 @@ public class Storage
 {
     private MultiskyLands plugin;
     private Path path;
-    ConfigurationLoader<CommentedConfigurationNode> loader;
-    CommentedConfigurationNode islands;
+    private ConfigurationLoader<CommentedConfigurationNode> loader;
+    private CommentedConfigurationNode islands;
 
     public Storage(MultiskyLands plugin)
     {
+        this.plugin = plugin;
+        this.path = plugin.getConfigDir().resolve("islands.conf");
+
         try
         {
-            this.plugin = plugin;
-            this.path = plugin.getConfigDir().resolve("islands.conf");
             if (Files.notExists(plugin.getConfigDir()))
             {
                 Files.createDirectory(plugin.getConfigDir());
@@ -39,8 +40,9 @@ public class Storage
             {
                 Files.createFile(path);
             }
+
             this.loader = HoconConfigurationLoader.builder().setPath(path).build();
-            islands = loader.load();
+            this.islands = this.loader.load();
         }
         catch (IOException e)
         {
@@ -52,8 +54,8 @@ public class Storage
     {
         try
         {
-            islands.getNode(playerName, "islandPosition").setValue(TypeTokens.VECTOR_3I_TOKEN,islandPosition);
-            loader.save(islands);
+            this.islands.getNode(playerName, "islandPosition").setValue(TypeTokens.VECTOR_3I_TOKEN,islandPosition);
+            this.loader.save(islands);
         }
         catch (IOException | ObjectMappingException e)
         {
@@ -92,10 +94,18 @@ public class Storage
 
     public boolean islandExists(final String playerName)
     {
-        if (islands.getNode(playerName).getKey() != null)
-            return true;
-        else
+        final Object object = islands.getNode(playerName).getKey();
+        final boolean isVirtual = islands.getNode(playerName).isVirtual();
+
+        if (islands.getNode(playerName).isVirtual())
             return false;
+        else
+            return true;
+
+//        if (islands.getNode(playerName).getKey() != null)
+//            return true;
+//        else
+//            return false;
     }
 
     public boolean positionAvailability(final Vector3i islandPosition)

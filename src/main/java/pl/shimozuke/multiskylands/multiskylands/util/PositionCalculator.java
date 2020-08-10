@@ -1,12 +1,8 @@
-package pl.shimozuke.multiskylands.multiskylands.helpfullTools;
+package pl.shimozuke.multiskylands.multiskylands.util;
 
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.command.spec.CommandExecutor;
-import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.format.TextColors;
 import pl.shimozuke.multiskylands.multiskylands.MultiskyLands;
+import pl.shimozuke.multiskylands.multiskylands.storage.Storage;
 
 public class PositionCalculator
 {
@@ -20,8 +16,9 @@ public class PositionCalculator
     public PositionCalculator(MultiskyLands plugin)
     {
         this.plugin = plugin;
-        this.storage = plugin.storage();
+        this.storage = plugin.getStorage();
     }
+
     public Vector3i calculatePosition(String playerName)
     {
         if (!storage.islandExists(playerName))
@@ -30,7 +27,7 @@ public class PositionCalculator
             {
                 for (int j = 0; j < counter; j++)
                 {
-                    if (counter%2 == 1)
+                    if (counter % 2 == 1)
                     {
                         position = position.add(x, 0, 0);
                         
@@ -39,7 +36,7 @@ public class PositionCalculator
                             return position;
                         }
                     }
-                    else if (counter%2 == 0)
+                    else
                     {
                         position = position.add(-x, 0, 0);
 
@@ -51,7 +48,7 @@ public class PositionCalculator
                 }
                 for (int j = 0; j < counter; j++)
                 {
-                    if (counter%2 == 1)
+                    if (counter % 2 == 1)
                     {
                         position = position.add(0, 0, z);
 
@@ -60,7 +57,7 @@ public class PositionCalculator
                             return position;
                         }
                     }
-                    else if (counter%2 == 0)
+                    else
                     {
                         position = position.add(0, 0, -z);
 
