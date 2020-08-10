@@ -11,9 +11,19 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.world.World;
+import pl.shimozuke.multiskylands.multiskylands.MultiskyLands;
 
 public class SpawnCommand implements CommandExecutor
 {
+    private MultiskyLands plugin;
+    private World world;
+
+    public SpawnCommand(MultiskyLands plugin)
+    {
+        this.plugin = plugin;
+        this.world = plugin.world();
+    }
+
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException
     {
@@ -23,7 +33,6 @@ public class SpawnCommand implements CommandExecutor
             Vector3d destination = new Vector3d(0, 100, 0);
             if (Sponge.getServer().getWorld("MultiSkyLands").isPresent())
             {
-                World world = Sponge.getServer().getWorld("MultiSkyLands").get();
                 player.setLocation(destination, world.getUniqueId());
                 player.sendMessage(Text.of(TextColors.GREEN, "You were teleported to Sky Lands"));
             }

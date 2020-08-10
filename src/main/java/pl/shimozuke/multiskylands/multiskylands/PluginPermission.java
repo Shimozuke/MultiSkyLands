@@ -4,4 +4,5 @@ public abstract class PluginPermission
 {
     public static final String SPAWN_COMMAND = "multiskylands.player.spawn";
     public static final String RETURN_COMMAND = "multiskylands.player.return";
+    public static final String CREATE_COMMAND = "multiskylands.player.create";
 }

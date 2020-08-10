@@ -1,9 +1,12 @@
 package pl.shimozuke.multiskylands.multiskylands.viod;
 
+import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.world.World;
+import pl.shimozuke.multiskylands.multiskylands.MultiskyLands;
+import pl.shimozuke.multiskylands.multiskylands.helpfullTools.Storage;
 
 import java.util.Optional;
 
@@ -12,7 +15,16 @@ import static org.spongepowered.api.block.BlockTypes.GRASS;
 
 public class SpawnCreator
 {
-    public static void createSpawn()
+    private MultiskyLands plugin;
+    private Vector3i spawn = new Vector3i(0, 99, 0);
+    private Storage storage;
+    public SpawnCreator(MultiskyLands plugin)
+    {
+        this.plugin = plugin;
+        this.storage = plugin.storage();
+    }
+
+    public void createSpawn()
     {
         Optional<World> optionalWorld = Sponge.getServer().getWorld("MultiSkyLands");
 
@@ -22,9 +34,11 @@ public class SpawnCreator
 
             world.setBlockType(0, 98, 0, BEDROCK);
 
-            for (int i = -22; i <= 22; i++)
+            storage.saveIsland("Spawn", spawn);
+
+            for (int i = -20; i <= 20; i++)
             {
-                for (int j = -22; j <= 22; j++)
+                for (int j = -20; j <= 20; j++)
                 {
                     world.setBlockType(i, 99, j, GRASS);
                 }
