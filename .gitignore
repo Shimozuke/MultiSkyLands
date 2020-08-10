@@ -1,4 +1,7 @@
-#build file
+# Idea
+.idea/
+
+# Build files
 build
 .gradle
 
